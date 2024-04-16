@@ -57,10 +57,28 @@ jobs:
       with:
         name: .func-app
         path: ./output
-  deploy:
+  deploy-to-dev:
    runs-on: windows-latest # For Linux, use ubuntu-latest
    environment: dev
    needs: build
+   if: github.ref == 'refs/heads/master'
+   steps:
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v4.1.4
+      with:
+        name: .func-app
+    - name: 'Run Azure Functions Action'
+      uses: Azure/functions-action@v1
+      id: fa
+      with:
+        app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+        package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+        publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }} # Remove publish-profile to use Azure RBAC
+  deploy-to-prod:
+   runs-on: windows-latest # For Linux, use ubuntu-latest
+   environment: prod
+   needs: build
+   if: github.ref == 'refs/heads/release'
    steps:
     - name: Download a Build Artifact
       uses: actions/download-artifact@v4.1.4
