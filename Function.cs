@@ -17,7 +17,7 @@ namespace FunctionApp5
         [Function("Function")]
         public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req)
         {
-            _logger.LogInformation("C# HTTP trigger function processed a request.");
+            _logger.LogInformation("Sumit1");
             return new OkObjectResult("Welcome to Azure Functions1111111111!");
         }
     }

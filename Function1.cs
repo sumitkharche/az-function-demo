@@ -26,8 +26,10 @@ namespace FunctionApp5
             _logger.LogInformation("Message Content-Type: {contentType}", message.ContentType);
 
             // Write Code to Call the power BI API here
-
-
+            var client = new HttpClient();
+            var resp = await client.GetAsync("https://func-reporting-dev.azurewebsites.net/api/function");
+            string data =  await resp.Content.ReadAsStringAsync();
+            _logger.LogInformation("Resp Data: {data}", data);
             // Complete the message
             await messageActions.CompleteMessageAsync(message);
         }
