@@ -58,7 +58,7 @@ jobs:
    runs-on: windows-latest # For Linux, use ubuntu-latest
    environment: dev
    needs: build
-   if: github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'develop' || github.ref == 'refs/heads/develop'
+   if: (github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.event.pull_request.target.ref == 'develop') || (github.ref == 'refs/heads/develop')
    steps:
     - name: Download a Build Artifact
       uses: actions/download-artifact@v4.1.4
