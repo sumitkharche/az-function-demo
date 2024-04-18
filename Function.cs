@@ -18,7 +18,7 @@ namespace FunctionApp5
         public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req)
         {
             _logger.LogInformation("Sumit1");
-            return new OkObjectResult("Welcome to Azure Functions1111111111!");
+            return new OkObjectResult("Welcome to Azure Functions  test1!");
         }
     }
 }
