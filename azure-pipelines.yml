@@ -7,8 +7,8 @@ trigger:
 - none
 
 pool:
-  vmImage: windows-latest
-  buildConfiguration: Release
+  vmImage: 'windows-latest'
+  buildConfiguration: 'Release'
 
 stages:
   - stage: build
