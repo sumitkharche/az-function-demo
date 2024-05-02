@@ -17,7 +17,7 @@ stages:
       - job: Build
         displayName: Build
         pool:
-         name: $(vmImage)
+         vmImage: $(vmImage)
         steps:
           - task: UseDotNet@2
             inputs:
