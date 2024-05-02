@@ -7,7 +7,7 @@ trigger:
 - none
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
   buildConfiguration: 'Release'
 
 stages:
@@ -17,7 +17,7 @@ stages:
       - job: Build
         displayName: Build
         pool:
-         vmImage: $(vmImage)
+         vmImage: 'ubuntu-latest'
         steps:
           - task: UseDotNet@2
             inputs:
