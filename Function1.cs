@@ -25,23 +25,8 @@ namespace FunctionApp5
             _logger.LogInformation("Message ID: {id}", message.MessageId);
             _logger.LogInformation("Message Body: {body}", message.Body);
             _logger.LogInformation("Message Content-Type: {contentType}", message.ContentType);
-
-            // Write Code to Call the power BI API here
-            var client = new HttpClient();
-            //var resp = await client.GetAsync("https://func-reporting-dev.azurewebsites.net/api/function");
-            //string data =  await resp.Content.ReadAsStringAsync();
-            
-            try
-            {
-                var resp = await client.GetAsync("https://reporting-dev01.azure-api.net/limit");
-                string data = await resp.Content.ReadAsStringAsync();
-                _logger.LogInformation("RespData1: {data}", data);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogInformation("Exception1 {data}", ex.Message);
-            }
-            
+            await Task.Delay(TimeSpan.FromSeconds(5));
+            _logger.LogInformation("Message processed!!!!");            
             // Complete the message
             await messageActions.CompleteMessageAsync(message);
         }
